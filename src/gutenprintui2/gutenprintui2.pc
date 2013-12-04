@@ -1,0 +1,12 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Gutenprint UI (GTK+-2.0 version)
+Description: Gutenprint Top Quality Printer Drivers - GTK+-2.0 User Interface
+Requires: gutenprint gtk+-2.0
+Version: 5.2.9
+Libs: -L${libdir} -lgutenprintui2
+Libs.private:  -lm -lm
+Cflags: -I${includedir} 
