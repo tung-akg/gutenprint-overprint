@@ -343,7 +343,7 @@ configure:11016: checking how to hardcode library paths into programs
 configure:11041: result: immediate
 configure:11135: checking for shl_load
 configure:11135: gcc -o conftest    conftest.c  >&5
-/tmp/cc3EyzQr.o: In function `main':
+/tmp/ccqm61Z1.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11135: $? = 1
@@ -455,7 +455,7 @@ configure: failed program was:
 configure:11173: result: no
 configure:11178: checking for dlopen
 configure:11178: gcc -o conftest    conftest.c  >&5
-/tmp/ccPBGZgF.o: In function `main':
+/tmp/ccAZXTlc.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:11178: $? = 1

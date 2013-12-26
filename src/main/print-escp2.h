@@ -519,7 +519,9 @@ typedef struct
   int split_channel_width;	/* Linewidth for split channels */
   short *split_channels;
 
+  /* Silver ink customed parameter*/
   short overprint;
+  int dry_time_per_pass;
 
   /* Ink parameters */
   int bitwidth;			/* Number of bits per ink drop */

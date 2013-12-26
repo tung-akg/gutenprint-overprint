@@ -919,7 +919,7 @@ static const float_param_t float_parameters[] =
       N_("Set drying time per scan"),
       STP_PARAMETER_TYPE_DOUBLE, STP_PARAMETER_CLASS_FEATURE,
       STP_PARAMETER_LEVEL_ADVANCED3, 0, 1, STP_CHANNEL_NONE, 1, 0
-    }, 0, 800.0, 0.0, 1
+    }, 0, 50.0, 0.0, 1
   },
   {
     {
@@ -1000,8 +1000,17 @@ static const int_param_t int_parameters[] =
       N_("Set overprint time"),
       STP_PARAMETER_TYPE_INT, STP_PARAMETER_CLASS_FEATURE,
       STP_PARAMETER_LEVEL_ADVANCED2, 0, 1, STP_CHANNEL_NONE, 1, 0
-    }, 1, 5, 1
+    }, 1, 20, 1
   },
+  {
+    {
+      "DryTimePerPass", N_("Dry time per pass"), "Color=No,Category=Advanced Printer Functionality",
+      N_("Set dry time per pass"),
+      STP_PARAMETER_TYPE_INT, STP_PARAMETER_CLASS_FEATURE,
+      STP_PARAMETER_LEVEL_ADVANCED2, 0, 1, STP_CHANNEL_NONE, 1, 0
+    }, 1, 200, 1
+  },
+
 };
 
 static const int int_parameter_count =
@@ -2779,6 +2788,10 @@ escp2_parameters(const stp_vars_t *v, const char *name,
     {
       description->is_active = 1;
     }
+  else if (strcmp(name, "DryTimePerPass") == 0)
+  {
+    description->is_active = 1;
+  }
 }
 
 const res_t *
@@ -3958,6 +3971,12 @@ setup_head_parameters(stp_vars_t *v)
   if (stp_check_int_parameter(v, "Overprint", STP_PARAMETER_ACTIVE))
       pd->overprint =
           stp_get_int_parameter(v, "Overprint");
+
+  pd->dry_time_per_pass = 0;
+  if (stp_check_int_parameter(v, "DryTimePerPass", STP_PARAMETER_ACTIVE))
+      pd->dry_time_per_pass =
+          stp_get_int_parameter(v, "DryTimePerPass");
+
 
   if (stp_escp2_has_cap(v, MODEL_FAST_360, MODEL_FAST_360_YES) &&
       (pd->inkname->inkset == INKSET_CMYK || pd->physical_channels == 1) &&
