@@ -343,7 +343,7 @@ configure:11016: checking how to hardcode library paths into programs
 configure:11041: result: immediate
 configure:11135: checking for shl_load
 configure:11135: gcc -o conftest    conftest.c  >&5
-/tmp/ccqm61Z1.o: In function `main':
+/tmp/ccjv0WSX.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `shl_load'
 collect2: error: ld returned 1 exit status
 configure:11135: $? = 1
@@ -455,7 +455,7 @@ configure: failed program was:
 configure:11173: result: no
 configure:11178: checking for dlopen
 configure:11178: gcc -o conftest    conftest.c  >&5
-/tmp/ccAZXTlc.o: In function `main':
+/tmp/ccTNSc4a.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `dlopen'
 collect2: error: ld returned 1 exit status
 configure:11178: $? = 1
@@ -684,9 +684,10 @@ configure:13953: result: no
 configure:13964: checking whether to make use of foomatic 3 extra features
 configure:13984: result: no
 configure:13995: checking for ijs-config
-configure:14028: result: no
+configure:14013: found /usr/bin/ijs-config
+configure:14025: result: /usr/bin/ijs-config
 configure:14040: checking whether to build Ghostscript driver
-configure:14060: result: no
+configure:14060: result: yes
 configure:14070: checking whether to enable loadable modules
 configure:14094: result: (automatic)
 configure:14121: checking whether to turn on debugging in build
@@ -907,7 +908,8 @@ configure:16921: result: no
 configure:16934: checking for texi2html
 configure:16967: result: no
 configure:16980: checking for dvips
-configure:17013: result: no
+configure:16998: found /usr/bin/dvips
+configure:17010: result: /usr/bin/dvips
 configure:17026: checking for db2pdf
 configure:17059: result: no
 configure:17074: checking for dvipdf
@@ -2103,11 +2105,13 @@ ac_cv_lib_z_gzgets=yes
 ac_cv_objext=o
 ac_cv_path_CUPS_CONFIG=/usr/bin/cups-config
 ac_cv_path_DVIPDF=/usr/bin/dvipdf
+ac_cv_path_DVIPS=/usr/bin/dvips
 ac_cv_path_EGREP='/usr/bin/grep -E'
 ac_cv_path_FGREP='/usr/bin/grep -F'
 ac_cv_path_FIND=/usr/bin/find
 ac_cv_path_GMSGFMT=/usr/bin/msgfmt
 ac_cv_path_GREP=/usr/bin/grep
+ac_cv_path_IJS_CONFIG=/usr/bin/ijs-config
 ac_cv_path_MSGFMT=/usr/bin/msgfmt
 ac_cv_path_MSGMERGE=/usr/bin/msgmerge
 ac_cv_path_PERL=/usr/bin/perl
@@ -2214,8 +2218,8 @@ BUILD_FOOMATIC_FALSE=''
 BUILD_FOOMATIC_TRUE='#'
 BUILD_GENPPD_STATIC_FALSE='#'
 BUILD_GENPPD_STATIC_TRUE=''
-BUILD_GHOSTSCRIPT_FALSE=''
-BUILD_GHOSTSCRIPT_TRUE='#'
+BUILD_GHOSTSCRIPT_FALSE='#'
+BUILD_GHOSTSCRIPT_TRUE=''
 BUILD_GIMP2_AS_GUTENPRINT_FALSE=''
 BUILD_GIMP2_AS_GUTENPRINT_TRUE='#'
 BUILD_GIMP2_FALSE=''
@@ -2258,7 +2262,7 @@ DOXYGEN=''
 DSYMUTIL=''
 DUMPBIN=''
 DVIPDF='/usr/bin/dvipdf'
-DVIPS=''
+DVIPS='/usr/bin/dvips'
 ECHO_C=''
 ECHO_N='-n'
 ECHO_T=''
@@ -2297,9 +2301,9 @@ GUTENPRINT_MAJOR_VERSION='5'
 GUTENPRINT_MICRO_VERSION='9'
 GUTENPRINT_MINOR_VERSION='2'
 GUTENPRINT_VERSION='5.2.9'
-IJS_CFLAGS=''
-IJS_CONFIG=''
-IJS_LIBS=''
+IJS_CFLAGS='-I/usr/include/ijs'
+IJS_CONFIG='/usr/bin/ijs-config'
+IJS_LIBS='-lijs'
 INSTALL_DATA='${INSTALL} -m 644'
 INSTALL_PROGRAM='${INSTALL}'
 INSTALL_SAMPLES_FALSE='#'

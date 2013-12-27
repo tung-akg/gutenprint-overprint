@@ -293,9 +293,9 @@ nmap yss <Plug>Yssurround
 nmap yS <Plug>YSurround
 nmap ys <Plug>Ysurround
 nnoremap zO zCzO
-map <SNR>32_WS <Plug>AlignMapsWrapperStart
-nmap <SNR>32_WE <Plug>AlignMapsWrapperEnd
 nnoremap <silent> <SNR>55_yrrecord :call YRRecord3()
+nmap <SNR>32_WE <Plug>AlignMapsWrapperEnd
+map <SNR>32_WS <Plug>AlignMapsWrapperStart
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#NetrwBrowseX(expand("<cWORD>"),0)
 nmap <F4> :cclose
 nmap <F3> :cs find d =expand("<cword>"):=line('.'):%
@@ -477,17 +477,17 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +245 src/main/escp2-driver.c
+badd +699 src/main/escp2-driver.c
 badd +117 include/gutenprint/vars.h
-badd +1020 src/main/print-escp2.c
+badd +3973 src/main/print-escp2.c
 badd +70 ~/Desktop/parsed/flush_noloop
 badd +45 ~/Desktop/parsed/flush_noloop1
 badd +96 include/gutenprint/weave.h
 badd +1551 src/main/print-weave.c
 badd +10 ~/Desktop/parsed/flush_noloop2
 badd +42 ~/Desktop/parsed/flush_noloop4
-badd +524 src/main/print-escp2.h
-badd +1124 src/main/print-vars.c
+badd +611 src/main/print-escp2.h
+badd +897 src/main/print-vars.c
 badd +343 src/main/print-list.c
 badd +2 ~/readFile.c
 badd +4586 ~/silverprint/gutenprint-5.2.9/src/main/print-escp2.c
@@ -496,21 +496,36 @@ badd +24 src/xml/escp2/model/model_96.xml
 badd +39 src/xml/escp2/media/artisan.xml
 badd +1 ~/Destop/parsed/drytime
 badd +43 ~/Desktop/parsed/drytime
-badd +203 src/main/print-util.c
-badd +0 ~/Dropbox/akg/IEICE_GeneralConference2014/ieice-akg.tex
+badd +287 src/main/print-util.c
+badd +1 ~/Dropbox/akg/IEICE_GeneralConference2014/ieice-akg.tex
+badd +0 /etc/cups/cupsd.conf
 args src/main/escp2-driver.c
 edit src/main/escp2-driver.c
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 46 + 29) / 59)
 exe 'vert 1resize ' . ((&columns * 95 + 95) / 190)
-exe 'vert 2resize ' . ((&columns * 94 + 95) / 190)
+exe '2resize ' . ((&lines * 10 + 29) / 59)
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
+exe '3resize ' . ((&lines * 46 + 29) / 59)
+exe 'vert 3resize ' . ((&columns * 94 + 95) / 190)
+exe '4resize ' . ((&lines * 10 + 29) / 59)
+exe 'vert 4resize ' . ((&columns * 94 + 95) / 190)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -535,7 +550,8 @@ setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
-setlocal nocursorline
+set cursorline
+setlocal cursorline
 setlocal define=
 setlocal dictionary=
 setlocal nodiff
@@ -625,24 +641,198 @@ normal! zo
 normal! zo
 239
 normal! zo
-686
+504
 normal! zo
-699
+507
+normal! zo
+539
+normal! zo
+544
+normal! zo
+552
+normal! zo
+557
+normal! zo
+575
+normal! zo
+580
+normal! zo
+587
+normal! zo
+596
+normal! zo
+598
+normal! zo
+603
+normal! zo
+608
+normal! zo
+620
+normal! zo
+637
+normal! zo
+641
+normal! zo
+660
+normal! zo
+665
+normal! zo
+673
+normal! zo
+679
+normal! zo
+688
 normal! zo
 701
 normal! zo
-703
+704
 normal! zo
-714
+707
 normal! zo
-788
+711
 normal! zo
-let s:l = 787 - ((116 * winheight(0) + 28) / 56)
+720
+normal! zo
+726
+normal! zo
+735
+normal! zo
+748
+normal! zo
+757
+normal! zo
+761
+normal! zo
+726
+normal! zc
+780
+normal! zo
+783
+normal! zo
+790
+normal! zo
+802
+normal! zo
+812
+normal! zo
+816
+normal! zo
+let s:l = 715 - ((0 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-787
-normal! 05|
+715
+normal! 014|
+wincmd w
+argglobal
+enew
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal binary
+setlocal bufhidden=wipe
+setlocal buflisted
+setlocal buftype=quickfix
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=:0,(s,u0,U1,g0,t0
+setlocal cinwords=if,else,while,do,for,switch
+set colorcolumn=+1
+setlocal colorcolumn=+1
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'qf'
+setlocal filetype=qf
+endif
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=20
+set foldtext=MyFoldText()
+setlocal foldtext=MyFoldText()
+setlocal formatexpr=
+setlocal formatoptions=qrn1
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=0
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+set list
+setlocal list
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal nomodeline
+setlocal nomodifiable
+setlocal nrformats=octal,hex
+set number
+setlocal number
+set numberwidth=3
+setlocal numberwidth=3
+setlocal omnifunc=syntaxcomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+set relativenumber
+setlocal relativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=4
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%!airline#statusline(2)
+setlocal suffixesadd=
+setlocal noswapfile
+setlocal synmaxcol=3000
+if &syntax != 'qf'
+setlocal syntax=qf
+endif
+setlocal tabstop=4
+setlocal tags=
+setlocal textwidth=80
+setlocal thesaurus=
+setlocal undofile
+setlocal winfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
 wincmd w
 argglobal
 edit src/main/print-escp2.c
@@ -736,7 +926,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!airline#statusline(2)
+setlocal statusline=%!airline#statusline(3)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
@@ -799,178 +989,177 @@ normal! zo
 normal! zo
 3942
 normal! zo
-3988
+3972
 normal! zo
-4008
+4215
 normal! zo
-4024
+3990
 normal! zo
-4050
+4010
 normal! zo
-4064
+4026
 normal! zo
-4073
+4227
 normal! zo
-4078
+4244
 normal! zo
-4088
+4252
 normal! zo
-4100
+4257
 normal! zo
-4109
+4271
 normal! zo
-4114
+4284
 normal! zo
-4121
+4291
 normal! zo
-4133
+4296
 normal! zo
-4156
+4304
 normal! zo
-4171
+4312
 normal! zo
-4178
+4320
 normal! zo
-4189
+4335
 normal! zo
-4195
+4347
 normal! zo
-4213
+4353
 normal! zo
-let s:l = 1007 - ((14 * winheight(0) + 28) / 56)
+4411
+normal! zo
+4416
+normal! zo
+4424
+normal! zo
+4452
+normal! zo
+4458
+normal! zo
+4474
+normal! zo
+4478
+normal! zo
+4490
+normal! zo
+4494
+normal! zo
+4515
+normal! zo
+4530
+normal! zo
+4541
+normal! zo
+4551
+normal! zo
+4568
+normal! zo
+4576
+normal! zo
+4592
+normal! zo
+4604
+normal! zo
+4052
+normal! zo
+4066
+normal! zo
+4075
+normal! zo
+4080
+normal! zo
+4090
+normal! zo
+4102
+normal! zo
+4111
+normal! zo
+4116
+normal! zo
+4123
+normal! zo
+4135
+normal! zo
+4158
+normal! zo
+4173
+normal! zo
+4180
+normal! zo
+4191
+normal! zo
+4197
+normal! zo
+4215
+normal! zo
+4227
+normal! zo
+4244
+normal! zo
+4252
+normal! zo
+4257
+normal! zo
+4271
+normal! zo
+4284
+normal! zo
+4291
+normal! zo
+4296
+normal! zo
+4304
+normal! zo
+4312
+normal! zo
+4320
+normal! zo
+4335
+normal! zo
+4347
+normal! zo
+4353
+normal! zo
+4411
+normal! zo
+4416
+normal! zo
+4424
+normal! zo
+4452
+normal! zo
+4458
+normal! zo
+4474
+normal! zo
+4478
+normal! zo
+4490
+normal! zo
+4494
+normal! zo
+4515
+normal! zo
+4530
+normal! zo
+4541
+normal! zo
+4551
+normal! zo
+4568
+normal! zo
+4576
+normal! zo
+4592
+normal! zo
+4604
+normal! zo
+let s:l = 3975 - ((31 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1007
-normal! 03|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 95 + 95) / 190)
-exe 'vert 2resize ' . ((&columns * 94 + 95) / 190)
-tabedit ~/Dropbox/akg/IEICE_GeneralConference2014/ieice-akg.tex
-set splitbelow splitright
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
-set nosplitbelow
-set nosplitright
-wincmd t
-set winheight=1 winwidth=1
-exe '1resize ' . ((&lines * 45 + 29) / 59)
-exe '2resize ' . ((&lines * 10 + 29) / 59)
-argglobal
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal binary
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal nocindent
-setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
-setlocal cinoptions=:0,(s,u0,U1,g0,t0
-setlocal cinwords=if,else,while,do,for,switch
-set colorcolumn=+1
-setlocal colorcolumn=+1
-setlocal comments=sO:%\ -,mO:%\ \ ,eO:%%,:%
-setlocal commentstring=%%s
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal define=\\\\\\([egx]\\|char\\|mathchar\\|count\\|dimen\\|muskip\\|skip\\|toks\\)\\=def\\|\\\\font\\|\\\\\\(future\\)\\=let\\|\\\\new\\(count\\|dimen\\|skip\\|muskip\\|box\\|toks\\|read\\|write\\|fam\\|insert\\)\\|\\\\\\(re\\)\\=new\\(boolean\\|command\\|counter\\|environment\\|font\\|if\\|length\\|savebox\\|theorem\\(style\\)\\=\\)\\s*\\*\\=\\s*{\\=\\|DeclareMathOperator\\s*{\\=\\s*
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'tex'
-setlocal filetype=tex
-endif
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-set foldtext=MyFoldText()
-setlocal foldtext=MyFoldText()
-setlocal formatexpr=
-setlocal formatoptions=qrn1
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=0
-setlocal include=\\\\input\\|\\\\include{
-setlocal includeexpr=substitute(v:fname,\ '^.\\{-}{\\|}.*',\ '',\ 'g')
-setlocal indentexpr=GetTeXIndent()
-setlocal indentkeys=0{,0},:,0#,!^F,o,O,e,[,(,{,),},],&,=\\bibitem,=\\item
-setlocal noinfercase
-setlocal iskeyword=48-57,a-z,A-Z,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-set list
-setlocal list
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal nomodeline
-setlocal modifiable
-setlocal nrformats=octal,hex
-set number
-setlocal number
-set numberwidth=3
-setlocal numberwidth=3
-setlocal omnifunc=syntaxcomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-set relativenumber
-setlocal relativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal nosmartindent
-setlocal softtabstop=4
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%!airline#statusline(1)
-setlocal suffixesadd=.tex
-setlocal noswapfile
-setlocal synmaxcol=3000
-if &syntax != 'tex'
-setlocal syntax=tex
-endif
-setlocal tabstop=4
-setlocal tags=~/gutenprint-5.2.9/.git/tex.tags,~/gutenprint-5.2.9/.git/tags,./tags,./TAGS,tags,TAGS
-setlocal textwidth=80
-setlocal thesaurus=
-setlocal undofile
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 74 - ((9 * winheight(0) + 22) / 45)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-74
+3975
 normal! 03|
 wincmd w
 argglobal
@@ -998,7 +1187,8 @@ setlocal nocopyindent
 setlocal cryptmethod=
 setlocal nocursorbind
 setlocal nocursorcolumn
-setlocal nocursorline
+set cursorline
+setlocal cursorline
 setlocal define=
 setlocal dictionary=
 setlocal nodiff
@@ -1065,7 +1255,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!airline#statusline(2)
+setlocal statusline=%!airline#statusline(4)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
@@ -1082,9 +1272,15 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 wincmd w
-exe '1resize ' . ((&lines * 45 + 29) / 59)
+exe '1resize ' . ((&lines * 46 + 29) / 59)
+exe 'vert 1resize ' . ((&columns * 95 + 95) / 190)
 exe '2resize ' . ((&lines * 10 + 29) / 59)
-tabnext 2
+exe 'vert 2resize ' . ((&columns * 95 + 95) / 190)
+exe '3resize ' . ((&lines * 46 + 29) / 59)
+exe 'vert 3resize ' . ((&columns * 94 + 95) / 190)
+exe '4resize ' . ((&lines * 10 + 29) / 59)
+exe 'vert 4resize ' . ((&columns * 94 + 95) / 190)
+tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
 endif

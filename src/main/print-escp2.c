@@ -3969,9 +3969,11 @@ setup_head_parameters(stp_vars_t *v)
 
   pd->overprint = 1;
   if (stp_check_int_parameter(v, "Overprint", STP_PARAMETER_ACTIVE))
+  {
       pd->overprint =
           stp_get_int_parameter(v, "Overprint");
-
+      stp_eprintf(v, "in set pd->overprint = %d\n", pd->overprint);
+  }
   pd->dry_time_per_pass = 0;
   if (stp_check_int_parameter(v, "DryTimePerPass", STP_PARAMETER_ACTIVE))
       pd->dry_time_per_pass =

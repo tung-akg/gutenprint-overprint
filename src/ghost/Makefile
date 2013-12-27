@@ -41,7 +41,7 @@ build_triplet = i686-pc-linux-gnu
 host_triplet = i686-pc-linux-gnu
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/scripts/global.mk
-#bin_PROGRAMS = ijsgutenprint.5.2$(EXEEXT)
+bin_PROGRAMS = ijsgutenprint.5.2$(EXEEXT)
 subdir = src/ghost
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/gettext.m4 \
@@ -65,13 +65,13 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__ijsgutenprint_5_2_SOURCES_DIST =  \
 	ijsgutenprint.c
-#am_ijsgutenprint_5_2_OBJECTS =  \
-#	ijsgutenprint.$(OBJEXT)
+am_ijsgutenprint_5_2_OBJECTS =  \
+	ijsgutenprint.$(OBJEXT)
 ijsgutenprint_5_2_OBJECTS = $(am_ijsgutenprint_5_2_OBJECTS)
 am__DEPENDENCIES_1 =
-#ijsgutenprint_5_2_DEPENDENCIES =  \
-#	$(GUTENPRINT_LIBS) \
-#	$(am__DEPENDENCIES_1)
+ijsgutenprint_5_2_DEPENDENCIES =  \
+	$(GUTENPRINT_LIBS) \
+	$(am__DEPENDENCIES_1)
 ijsgutenprint_5_2_LINK =  \
 	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
@@ -126,7 +126,7 @@ DOXYGEN =
 DSYMUTIL = 
 DUMPBIN = 
 DVIPDF = /usr/bin/dvipdf
-DVIPS = 
+DVIPS = /usr/bin/dvips
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -167,9 +167,9 @@ GUTENPRINT_MAJOR_VERSION = 5
 GUTENPRINT_MICRO_VERSION = 9
 GUTENPRINT_MINOR_VERSION = 2
 GUTENPRINT_VERSION = 5.2.9
-IJS_CFLAGS = 
-IJS_CONFIG = 
-IJS_LIBS = 
+IJS_CFLAGS = -I/usr/include/ijs
+IJS_CONFIG = /usr/bin/ijs-config
+IJS_LIBS = -lijs
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -310,10 +310,10 @@ top_srcdir = ../..
 AM_CPPFLAGS = -I$(top_srcdir)/include -I$(top_builddir)/include $(LOCAL_CPPFLAGS) $(GNUCFLAGS)
 GUTENPRINTUI_LIBS = $(top_builddir)/src/gutenprintui/libgutenprintui.la
 MAINTAINERCLEANFILES = Makefile.in
-LOCAL_CPPFLAGS = $(GUTENPRINT_CFLAGS) 
-#ijsgutenprint_5_2_SOURCES = ijsgutenprint.c
-#ijsgutenprint_5_2_LDADD = $(GUTENPRINT_LIBS) $(IJS_LIBS)
-#ijsgutenprint_5_2_LDFLAGS = $(STATIC_LDOPTS)
+LOCAL_CPPFLAGS = $(GUTENPRINT_CFLAGS) -I/usr/include/ijs
+ijsgutenprint_5_2_SOURCES = ijsgutenprint.c
+ijsgutenprint_5_2_LDADD = $(GUTENPRINT_LIBS) $(IJS_LIBS)
+ijsgutenprint_5_2_LDFLAGS = $(STATIC_LDOPTS)
 all: all-am
 
 .SUFFIXES:

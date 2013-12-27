@@ -542,6 +542,7 @@ send_print_command(stp_vars_t *v, stp_pass_t *pass, int ncolor, int nlines)
     pd->horizontal_passes;
   if (pd->command_set == MODEL_COMMAND_PRO || pd->variable_dots)
     {
+        stp_eprintf(v, "In pro mode\n");
       int nwidth = pd->bitwidth * ((lwidth + 7) / 8);
       stp_send_command(v, "\033i", "ccchh", ncolor,
 		       (stp_get_debug_level() & STP_DBG_NO_COMPRESSION) ? 0 : 1,
@@ -549,6 +550,7 @@ send_print_command(stp_vars_t *v, stp_pass_t *pass, int ncolor, int nlines)
     }
   else
     {
+        stp_eprintf(v, "~~~~Not In pro mode\n");
       int ygap = 3600 / pd->vertical_units;
       int xgap = 3600 / pd->physical_xdpi;
       if (pd->nozzles == 1)
@@ -694,22 +696,32 @@ stpi_escp2_flush_pass(stp_vars_t *v, int passno, int vertical_subpass)
   stp_linecount_t *linecount = stp_get_linecount_by_pass(v, passno);
   int minlines = pd->min_nozzles;
   int nozzle_start = pd->nozzle_start;
-  int overprint = pd->overprint;
-  for(i=0;i<overprint;i++)
+  stp_eprintf(v,"pd->channels_in_use = %d\n", pd->channels_in_use);
+  for(i=0;i<pd->overprint;i++)
   {
+      stp_eprintf(v, "iiiiiiiiiiiiiiii = %d\n", i);
   for (j = 0; j < pd->channels_in_use; j++)
     {
+        stp_eprintf(v, "j = %d, lineactive->v[%d] = %d\n", j, j, lineactive->v[j]);
+        if(&pd->channels[j]->color != 0)
+        {
+            stp_eprintf(v, "pd->channels[%d]->color = %d\n", j, pd->channels[j]->color);
+        }
       if (lineactive->v[j] > 0)
 	{
 	  int ncolor = pd->channels[j]->color;
+      stp_eprintf(v, "flush: ncolor = %d\n", ncolor);
 	  int subchannel = pd->channels[j]->subchannel;
 	  int nlines = linecount->v[j];
 	  int extralines = 0;
 	  set_vertical_position(v, pass);
 	  set_color(v, pass, j);
 	  if (subchannel >= 0)
+      {
 	    ncolor |= (subchannel << 4);
-
+        stp_eprintf(v, "subchannel = %d\n", subchannel);
+        stp_eprintf(v, "after subchannel << 4, ncolor = %d\n", ncolor);
+      }
 	  if (pd->split_channels)
 	    {
 	      int sc = pd->split_channel_count;
@@ -738,6 +750,7 @@ stpi_escp2_flush_pass(stp_vars_t *v, int passno, int vertical_subpass)
 		      set_horizontal_position(v, pass, vertical_subpass);
 		      send_print_command(v, pass, pd->split_channels[sc_off],
 					 lc + extralines + ns);
+              stp_eprintf(v, "In for(k), after send print command, pd->split_channels[sc_off] = %d\n", pd->split_channels[sc_off]);
 		      if (ns > 0)
 			send_extra_data(v, ns);
 		      for (l = 0; l < lc; l++)
@@ -772,6 +785,7 @@ stpi_escp2_flush_pass(stp_vars_t *v, int passno, int vertical_subpass)
 		  nlines = minlines;
 		}
 	      send_print_command(v, pass, ncolor, nlines);
+          stp_eprintf(v, "After send print command, ncolor = %d\n", ncolor);
 	      extralines -= nozzle_start;
 	      /*
 	       * Send the data
@@ -784,7 +798,7 @@ stpi_escp2_flush_pass(stp_vars_t *v, int passno, int vertical_subpass)
 	      stp_send_command(v, "\r", "");
 	    }
 	}
-      if(i == overprint-1)
+      if(i == pd->overprint-1)
       {
         lineoffs->v[j] = 0;
         linecount->v[j] = 0;

@@ -122,7 +122,7 @@ DOXYGEN =
 DSYMUTIL = 
 DUMPBIN = 
 DVIPDF = /usr/bin/dvipdf
-DVIPS = 
+DVIPS = /usr/bin/dvips
 ECHO_C = 
 ECHO_N = -n
 ECHO_T = 
@@ -163,9 +163,9 @@ GUTENPRINT_MAJOR_VERSION = 5
 GUTENPRINT_MICRO_VERSION = 9
 GUTENPRINT_MINOR_VERSION = 2
 GUTENPRINT_VERSION = 5.2.9
-IJS_CFLAGS = 
-IJS_CONFIG = 
-IJS_LIBS = 
+IJS_CFLAGS = -I/usr/include/ijs
+IJS_CONFIG = /usr/bin/ijs-config
+IJS_LIBS = -lijs
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
@@ -313,7 +313,7 @@ CUPS_MAN = \
 	cups-genppdupdate.8
 
 ESCPUTIL_MAN = escputil.1
-#GHOSTSCRIPT_MAN = ijsgutenprint.1
+GHOSTSCRIPT_MAN = ijsgutenprint.1
 man_MANS = $(CUPS_MAN) $(ESCPUTIL_MAN) $(GHOSTSCRIPT_MAN)
 EXTRA_man_MANS = \
 	cups-calibrate.8 \
